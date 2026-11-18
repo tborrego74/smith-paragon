@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/webp" href="assets/peak-dark.webp">
+<meta property="og:title" content="Smith-Paragon Partners">
+<meta property="og:description" content="The firm you call when people problems become business risk.">
+<title>Smith-Paragon Partners</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Smith-Paragon Partners helps employers find and fix the people-related risks behind safety incidents, leadership gaps, hiring problems, and turnover.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a fixed 3D particle stage on the right, editorial copy on the left, the scene re-forms at each chapter and ends on the summit from the logo. */
+:root{
+  --ink:#0b0a09;          /* page, warm black from the logo */
+  --ink-2:#14120f;        /* raised surfaces */
+  --ink-3:#1d1a16;
+  --line:rgba(244,240,232,.10);
+  --line-2:rgba(244,240,232,.18);
+  --ivory:#f4f0e8;        /* primary text, the logo's light faces */
+  --ivory-dim:#bdb5a6;    /* secondary text */
+  --stone:#857c6d;        /* captions */
+  --gold:#c9a35a;         /* brand gold */
+  --gold-hi:#ead08f;
+  --gold-lo:#8f6d2e;
+  --gold-soft:rgba(201,163,90,.12);
+  --risk-low:#8fb39a;
+  --risk-watch:#e2b350;
+  --risk-high:#e2765c;
+  --display:'Cormorant Garamond','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --wrap:1220px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--ivory);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+
+/* ---------- stage ---------- */
+#stage{position:fixed;inset:0;z-index:0;pointer-events:none}
+#stage canvas{display:block;width:100%;height:100%}
+.scrim{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 75% 45%,transparent 35%,rgba(11,10,9,.55) 100%),
+    linear-gradient(90deg,rgba(11,10,9,.86) 0%,rgba(11,10,9,.55) 38%,rgba(11,10,9,0) 62%)}
+.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.no-webgl #stage{background:radial-gradient(60% 60% at 72% 42%,rgba(201,163,90,.22),transparent 70%)}
+
+main,header,footer{position:relative;z-index:5}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(11,10,9,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:30px;width:auto}
+.brand .wm{display:flex;flex-direction:column;line-height:1}
+.brand .wm b{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:.08em}
+.brand .wm span{font-size:8.5px;font-weight:600;letter-spacing:.32em;color:var(--gold);margin-top:3px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:13px;font-weight:500;color:var(--ivory-dim);letter-spacing:.02em;transition:color .2s}
+.nav ul a:hover{color:var(--ivory)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);font-weight:600;font-size:14px;letter-spacing:.01em;padding:14px 22px;border-radius:999px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .2s,background .2s,border-color .2s,box-shadow .3s;white-space:nowrap}
+.btn-gold{background:linear-gradient(135deg,var(--gold-hi),var(--gold) 45%,var(--gold-lo));color:#17120a;box-shadow:0 8px 30px -10px rgba(201,163,90,.6)}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 12px 40px -10px rgba(234,208,143,.75)}
+.btn-ghost{border-color:var(--line-2);color:var(--ivory);background:rgba(244,240,232,.03)}
+.btn-ghost:hover{border-color:var(--gold);background:var(--gold-soft)}
+.btn-sm{padding:10px 16px;font-size:13px}
+.btn .arr{transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ---------- type ---------- */
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.02;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(44px,5.4vw,84px)}
+h2{font-size:clamp(38px,5vw,68px)}
+h3{font-size:clamp(24px,2.3vw,30px);line-height:1.1}
+em,.it{font-style:italic;font-weight:500;color:var(--gold-hi)}
+.lead{font-size:clamp(17px,1.4vw,20px);color:var(--ivory-dim);max-width:34em;line-height:1.65}
+p{margin:0}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.chapter{padding-block:clamp(110px,16vh,180px)}
+.col{max-width:620px;display:grid;gap:26px}
+
+/* hero */
+.hero{min-height:calc(100svh - 64px);display:flex;align-items:center;padding-block:80px 120px}
+.hero .col{max-width:820px;gap:30px}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span{display:inline-block;transform:translateY(0);animation:rise 1.2s cubic-bezier(.2,.7,.1,1) both}
+.hero h1 .line:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .line:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.pillars{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:18px;padding-top:26px;border-top:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ivory-dim)}
+.pillars span{display:flex;align-items:center;gap:10px}
+.pillars span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.scroll-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--stone)}
+.scroll-cue i{width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* pattern */
+.reframes{display:grid;gap:0;border-top:1px solid var(--line)}
+.reframe{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);font-size:clamp(16px,1.5vw,19px)}
+.reframe .from{color:var(--ivory-dim)}
+.reframe .to{font-family:var(--display);font-size:1.35em;font-weight:600;color:var(--ivory)}
+.reframe .via{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+blockquote{margin:0;padding:6px 0 6px 26px;border-left:1px solid var(--gold);font-family:var(--display);font-style:italic;font-size:clamp(22px,2.2vw,28px);line-height:1.35;color:var(--ivory)}
+blockquote cite{display:block;margin-top:12px;font-family:var(--body);font-style:normal;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--stone)}
+
+/* risk check */
+.glass{background:linear-gradient(180deg,rgba(29,26,22,.82),rgba(20,18,15,.88));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:22px}
+.check{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0;overflow:hidden;margin-top:48px}
+.qs{padding:clamp(22px,3vw,40px);display:grid;gap:4px;border-right:1px solid var(--line)}
+.q{padding:18px 0;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.q:last-child{border-bottom:0}
+.q-head{display:flex;gap:14px;align-items:baseline}
+.q-num{font-family:var(--mono);font-size:11px;color:var(--gold)}
+.q-text{font-family:var(--display);font-size:clamp(20px,1.9vw,24px);font-weight:600;line-height:1.2}
+.opts{display:flex;flex-wrap:wrap;gap:8px;padding-left:30px}
+.opt{font:500 13px var(--body);color:var(--ivory-dim);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .2s}
+.opt:hover{border-color:var(--ivory-dim);color:var(--ivory)}
+.opt[aria-pressed="true"][data-v="0"]{background:rgba(143,179,154,.16);border-color:var(--risk-low);color:var(--ivory)}
+.opt[aria-pressed="true"][data-v="1"]{background:rgba(226,179,80,.16);border-color:var(--risk-watch);color:var(--ivory)}
+.opt[aria-pressed="true"][data-v="2"]{background:rgba(226,118,92,.16);border-color:var(--risk-high);color:var(--ivory)}
+.register{padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:20px;background:rgba(11,10,9,.35)}
+.reg-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.reg-head b{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.reg-rows{display:grid;gap:0}
+.reg-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+.reg-row .code{font-family:var(--mono);font-size:10.5px;color:var(--stone)}
+.reg-row .area{font-size:13.5px;color:var(--ivory-dim);line-height:1.35}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:6px;border:1px solid var(--line-2);color:var(--stone);white-space:nowrap}
+.chip.l0{color:var(--risk-low);border-color:rgba(143,179,154,.5);background:rgba(143,179,154,.08)}
+.chip.l1{color:var(--risk-watch);border-color:rgba(226,179,80,.5);background:rgba(226,179,80,.08)}
+.chip.l2{color:var(--risk-high);border-color:rgba(226,118,92,.55);background:rgba(226,118,92,.09)}
+.meter{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.meter i{height:8px;border-radius:2px;background:rgba(244,240,232,.07);transition:background .4s}
+.verdict{display:grid;gap:10px}
+.verdict .big{font-family:var(--display);font-size:clamp(24px,2.3vw,30px);font-weight:600;line-height:1.15}
+.verdict p{color:var(--ivory-dim);font-size:14.5px}
+.fine{font-size:12px;color:var(--stone)}
+
+/* practices */
+.practices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:56px}
+.practice{padding:clamp(24px,2.6vw,36px);display:grid;gap:18px;align-content:start;transition:border-color .3s,transform .3s}
+.practice:hover{border-color:rgba(201,163,90,.45);transform:translateY(-3px)}
+.practice .tag{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.practice .lead-by{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 18px currentColor;background:currentColor}
+.practice p{color:var(--ivory-dim);font-size:15px}
+.practice ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.practice li{font-size:14px;color:var(--ivory);display:flex;gap:10px;align-items:baseline}
+.practice li::before{content:"";flex:none;width:12px;height:1px;background:var(--gold);transform:translateY(-4px)}
+.signal{font-size:14px;color:var(--ivory);padding:14px 16px;border-radius:12px;background:rgba(11,10,9,.5);border:1px solid var(--line)}
+.signal b{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:600}
+
+/* approach */
+.steps{display:grid;gap:0;margin-top:10px;counter-reset:s}
+.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--display);font-size:44px;line-height:.9;color:var(--gold);font-weight:500}
+.step h3{margin-bottom:8px}
+.step p{color:var(--ivory-dim);font-size:15.5px;max-width:34em}
+
+/* proof */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:52px;border-block:1px solid var(--line)}
+.stat{padding:30px 22px;border-right:1px solid var(--line);display:grid;gap:8px}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--display);font-weight:600;font-size:clamp(44px,5vw,66px);line-height:.95;color:var(--ivory);font-variant-numeric:tabular-nums}
+.stat .v small{font-size:.55em;color:var(--gold)}
+.stat .k{font-size:13px;color:var(--ivory-dim);line-height:1.45}
+.standards{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.standards span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:7px 11px;border:1px solid var(--line);border-radius:6px;color:var(--ivory-dim)}
+
+/* audience */
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:12px;border-top:1px solid var(--line)}
+.role{padding:22px 22px 22px 0;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.role:nth-child(odd){border-right:1px solid var(--line)}
+.role:nth-child(even){padding-left:22px}
+.role b{font-family:var(--display);font-size:23px;font-weight:600}
+.role span{color:var(--ivory-dim);font-size:14.5px}
+
+/* placeholders */
+.ph{border:1px dashed rgba(201,163,90,.55)!important;background:repeating-linear-gradient(135deg,rgba(201,163,90,.05) 0 10px,transparent 10px 20px)}
+.ph-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px dashed rgba(201,163,90,.6);border-radius:5px;padding:3px 7px;white-space:nowrap}
+.inline-ph{color:var(--gold-hi);border-bottom:1px dashed var(--gold);white-space:nowrap}
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px}
+.case{border-radius:18px;padding:26px;display:grid;gap:14px;align-content:start}
+.case dl{margin:0;display:grid;gap:12px}
+.case dt{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600}
+.case dd{margin:2px 0 0;font-size:14.5px;color:var(--ivory-dim)}
+.industries{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.industries span{font-size:13px;padding:8px 14px;border-radius:999px;color:var(--ivory-dim)}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:52px}
+.person{padding:clamp(22px,2.6vw,34px);display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px;align-items:start}
+.portrait{aspect-ratio:4/5;max-width:100%;border-radius:14px;display:grid;place-items:center;text-align:center;padding:10px;position:relative;overflow:hidden}
+.portrait .ini{font-family:var(--display);font-size:46px;font-weight:600;color:var(--gold)}
+.portrait .ph-tag{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:9px}
+.person .who{display:grid;gap:4px}
+.person .who b{font-family:var(--display);font-size:30px;font-weight:600;line-height:1.05}
+.person .who span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.person p{color:var(--ivory-dim);font-size:14.5px}
+.person q{display:block;font-family:var(--display);font-style:italic;font-size:19px;line-height:1.35;color:var(--ivory);quotes:none;padding-top:14px;border-top:1px solid var(--line)}
+.person .meta{display:flex;flex-wrap:wrap;gap:6px}
+.person .meta span{font-size:11.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ivory-dim)}
+.person-body{display:grid;gap:14px;min-width:0}
+.together{margin-top:18px;padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.together p{font-family:var(--display);font-size:clamp(20px,2vw,25px);font-style:italic;max-width:40em}
+
+/* summit interlude */
+.summit{min-height:110vh;display:flex;align-items:flex-end;text-align:center;padding-block:0 12vh}
+.summit .wrap{width:100%;display:grid;gap:18px;justify-items:center}
+.summit h2{max-width:14em;text-shadow:0 4px 40px rgba(11,10,9,.9)}
+.summit .eyebrow::after{content:"";width:28px;height:1px;background:currentColor}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:start}
+form{padding:clamp(22px,3vw,36px);display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:7px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600}
+input,select,textarea{font:400 15px var(--body);color:var(--ivory);background:rgba(11,10,9,.55);border:1px solid var(--line-2);border-radius:10px;padding:13px 14px;width:100%;letter-spacing:0;text-transform:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+textarea{min-height:110px;resize:vertical}
+select option{background:var(--ink-2)}
+.form-note{font-size:13px;color:var(--gold-hi);min-height:1.2em}
+.contact-list{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+.contact-list div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14.5px;flex-wrap:wrap}
+.contact-list dt{color:var(--stone);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;align-self:center}
+.contact-list dd{margin:0}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:rgba(11,10,9,.92)}
+footer .wrap{padding-block:56px 90px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+footer img{width:170px;height:auto}
+footer .f-right{display:grid;gap:10px;justify-items:end;text-align:right;color:var(--stone);font-size:13px}
+footer .f-right b{color:var(--ivory-dim);font-weight:500;letter-spacing:.24em;font-size:11px;text-transform:uppercase}
+
+/* chapter rail */
+.rail{position:fixed;right:max(22px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:40;display:grid;gap:14px}
+.rail a{display:flex;align-items:center;justify-content:flex-end;gap:12px;text-decoration:none;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:transparent;transition:color .3s}
+.rail a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--stone);transition:all .3s}
+.rail a:hover{color:var(--ivory-dim)}
+.rail a.on{color:var(--gold)}
+.rail a.on i{background:var(--gold);border-color:var(--gold);box-shadow:0 0 14px var(--gold)}
+
+.ribbon{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;font-size:11.5px;color:var(--ivory-dim);background:rgba(20,18,15,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line)}
+.ribbon button{background:none;border:0;color:var(--stone);cursor:pointer;font-size:14px;padding:0 2px}
+
+/* reveal: starts visible, only shifts */
+.rv{transition:transform 1s cubic-bezier(.2,.7,.1,1),opacity 1s}
+.rv.pre{transform:translateY(26px);opacity:.35}
+
+@media (max-width:980px){
+  .nav ul{display:none}
+  .check,.contact-grid{grid-template-columns:1fr}
+  .qs{border-right:0;border-bottom:1px solid var(--line)}
+  .practices,.team,.cases{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .rail{display:none}
+  .scrim{background:linear-gradient(180deg,rgba(11,10,9,.25) 0%,rgba(11,10,9,.78) 55%,rgba(11,10,9,.88) 100%)}
+}
+@media (max-width:620px){
+  .wrap{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+  .brand .wm{display:none}
+  .hero{padding-block:40px 110px}
+  .reframe{grid-template-columns:1fr;gap:4px}
+  .reframe .via{order:-1}
+  .roles{grid-template-columns:1fr}
+  .role:nth-child(odd){border-right:0}
+  .role:nth-child(even){padding-left:0}
+  .person{grid-template-columns:1fr}
+  .portrait{max-width:160px}
+  .row2{grid-template-columns:1fr}
+  .stat{padding:22px 14px}
+  .opts{padding-left:0;gap:6px}
+  .opt{padding:7px 11px;font-size:12.5px}
+  footer .wrap{grid-template-columns:1fr}
+  footer .f-right{justify-items:start;text-align:left}
+  .ribbon{font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv.pre{transform:none;opacity:1}
+}
+</style>
+
+</head>
+<body>
+<div id="stage" aria-hidden="true"></div>
+<div class="scrim" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Smith-Paragon Partners home">
+      <img src="assets/peak-dark.webp" alt="" width="68" height="30">
+      <span class="wm"><b>SMITH</b><span>PARAGON PARTNERS</span></span>
+    </a>
+    <ul>
+      <li><a href="#check">Risk check</a></li>
+      <li><a href="#practices">Practices</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#partners">Partners</a></li>
+    </ul>
+    <a class="btn btn-gold btn-sm" href="#contact">Book a consultation</a>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Chapters">
+  <a href="#top" data-for="top">Top<i></i></a>
+  <a href="#pattern" data-for="pattern">The pattern<i></i></a>
+  <a href="#check" data-for="check">Risk check<i></i></a>
+  <a href="#practices" data-for="practices">Practices<i></i></a>
+  <a href="#approach" data-for="approach">Approach<i></i></a>
+  <a href="#contact" data-for="contact">Contact<i></i></a>
+</nav>
+
+<main>
+  <!-- 1 HERO -->
+  <section class="hero" id="top" data-stage="1">
+    <div class="wrap" style="width:100%">
+      <div class="col">
+        <div class="eyebrow">Denver, Colorado</div>
+        <h1>
+          <span class="line"><span>The firm you call</span></span>
+          <span class="line"><span>when people problems</span></span>
+          <span class="line"><span>become <em>business risk.</em></span></span>
+        </h1>
+        <p class="lead">Safety incidents. Supervisors who aren't ready to lead. Hires who don't last. Turnover nobody can explain. We find what's driving it, fix it with your team, and measure the result.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="#contact">Book a consultation <span class="arr">→</span></a>
+          <a class="btn btn-ghost" href="#check">Take the 2-minute risk check</a>
+        </div>
+        <div class="pillars"><span>People</span><span>Leadership</span><span>Safety</span><span>Performance</span></div>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
+  </section>
+
+  <!-- 2 PATTERN -->
+  <section class="chapter" id="pattern" data-stage="2">
+    <div class="wrap">
+      <div class="col rv">
+        <div class="eyebrow">The pattern</div>
+        <h2>Four problems. Usually <em>one root cause.</em></h2>
+        <p class="lead">An injury report. A strong performer resigns. A new supervisor freezes in a tough moment. A hire is gone in 90 days. Most employers treat these one at a time, often with four different vendors. We look at them together.</p>
+        <div class="reframes">
+          <div class="reframe"><span class="from">A safety issue</span><span class="via">may be</span><span class="to">a leadership issue.</span></div>
+          <div class="reframe"><span class="from">A turnover problem</span><span class="via">may be</span><span class="to">a workforce issue.</span></div>
+          <div class="reframe"><span class="from">A performance issue</span><span class="via">may be</span><span class="to">a culture issue.</span></div>
+        </div>
+        <blockquote>Organizational success is not built through isolated solutions. It is built by aligning people, leadership, risk, and performance.<cite>What we believe</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 RISK CHECK -->
+  <section class="chapter" id="check" data-stage="3">
+    <div class="wrap">
+      <div class="col rv" style="max-width:760px">
+        <div class="eyebrow">Five-question risk check</div>
+        <h2>Five questions every employer should be able to <em>answer.</em></h2>
+        <p class="lead">Be honest. It takes two minutes and shows where your people risk is concentrated.</p>
+      </div>
+      <div class="check glass rv">
+        <div class="qs" id="qs"></div>
+        <aside class="register" aria-live="polite">
+          <div class="reg-head"><b>Your risk register</b><span class="mono" id="reg-count">0 / 5 answered</span></div>
+          <div class="reg-rows" id="reg-rows"></div>
+          <div class="meter" id="meter" aria-hidden="true"></div>
+          <div class="verdict" id="verdict">
+            <div class="big">Answer the questions to see where to start.</div>
+            <p>Each answer updates your register. Nothing is saved or sent.</p>
+          </div>
+          <a class="btn btn-gold" id="talk" href="#contact">Talk through my results <span class="arr">→</span></a>
+          <p class="fine">A conversation starter, not a formal assessment.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 PRACTICES -->
+  <section class="chapter" id="practices" data-stage="4">
+    <div class="wrap">
+      <div class="col rv">
+        <div class="eyebrow">Practice areas</div>
+        <h2>Four practices. <em>One view</em> of your people risk.</h2>
+        <p class="lead">Each practice stands on its own. The value is that they talk to each other, so a fix in one place doesn't create a problem somewhere else.</p>
+      </div>
+      <div class="practices">
+        <article class="practice glass rv">
+          <div class="tag"><span class="dot" style="color:#e9c46a"></span><span class="lead-by">Led by Edward Smith</span></div>
+          <h3>Safety &amp; Operational Risk</h3>
+          <p>Reduce risk, strengthen safety and compliance, improve operational readiness, and build accountability.</p>
+          <ul><li>EHS, OSHA, and regulatory compliance</li><li>Incident investigation and root cause analysis</li><li>Safety audits and hazard assessments</li><li>Fleet and driver safety</li><li>Workers' comp and claims risk</li></ul>
+          <div class="signal"><b>Call us when</b>Incidents keep repeating after the corrective actions are signed off.</div>
+        </article>
+        <article class="practice glass rv">
+          <div class="tag"><span class="dot" style="color:#e58f74"></span><span class="lead-by">Edward and Roberta</span></div>
+          <h3>Leadership &amp; Workplace Culture</h3>
+          <p>Stronger leaders, communication, accountability, engagement, resilience, and a healthier culture.</p>
+          <ul><li>Leadership development and coaching</li><li>Supervisor readiness and accountability</li><li>Safety culture and engagement</li><li>Team building and training</li></ul>
+          <div class="signal"><b>Call us when</b>Your best workers get promoted and then struggle to lead.</div>
+        </article>
+        <article class="practice glass rv">
+          <div class="tag"><span class="dot" style="color:#86b9dc"></span><span class="lead-by">Led by Roberta Muniz</span></div>
+          <h3>Talent Acquisition &amp; Workforce Strategy</h3>
+          <p>Attract, select, develop, and retain talent, with specialized expertise in safety-sensitive and mission-critical roles.</p>
+          <ul><li>Recruiting and talent acquisition strategy</li><li>Hiring, interviewing, and selection practices</li><li>Hiring manager effectiveness</li><li>Retention and workforce development</li></ul>
+          <div class="signal"><b>Call us when</b>New hires leave before they're productive, or shouldn't have been hired.</div>
+        </article>
+        <article class="practice glass rv">
+          <div class="tag"><span class="dot" style="color:#a9c99a"></span><span class="lead-by">Led by Roberta Muniz</span></div>
+          <h3>Career Mobility &amp; Outplacement</h3>
+          <p>Support organizations and employees through workforce transitions with professionalism, structure, and respect.</p>
+          <ul><li>Outplacement and transition support</li><li>Career mobility and internal pathways</li><li>Career coaching for affected employees</li><li>Change support for leaders</li></ul>
+          <div class="signal"><b>Call us when</b>You're restructuring and want people treated well on the way out and the way forward.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 APPROACH -->
+  <section class="chapter" id="approach" data-stage="5">
+    <div class="wrap">
+      <div class="col rv">
+        <div class="eyebrow">How we work</div>
+        <h2>Assess. Develop. Equip. <em>Measure.</em></h2>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><div><h3>Assess</h3><p>We find the underlying risk. Incident data, turnover, interviews with leaders and frontline employees, and what work really looks like on the floor.</p></div></div>
+          <div class="step"><span class="n">02</span><div><h3>Develop</h3><p>We build practical solutions that fit your operation, your people, and your budget. No binder that sits on a shelf.</p></div></div>
+          <div class="step"><span class="n">03</span><div><h3>Equip</h3><p>We train and coach your leaders and employees so the change holds after we leave.</p></div></div>
+          <div class="step"><span class="n">04</span><div><h3>Measure</h3><p>We agree on the numbers up front and track them. You'll know if it worked.</p></div></div>
+        </div>
+      </div>
+
+      <div class="stats rv" id="stats">
+        <div class="stat"><span class="v" data-to="30">0<small>+</small></span><span class="k">Combined years in safety, EHS, recruiting, HR, and coaching</span></div>
+        <div class="stat"><span class="v" data-to="4000" data-comma>0<small>+</small></span><span class="k">Employees supported by enterprise EHS programs Edward has led</span></div>
+        <div class="stat"><span class="v" data-to="50">0<small>+</small></span><span class="k">Locations covered by those programs</span></div>
+        <div class="stat"><span class="v" data-to="0" data-zero>0</span><span class="k">OSHA citations or regulatory fines under Edward's programs since 2023</span></div>
+      </div>
+      <p class="fine" style="margin-top:12px"><span class="ph-tag">Confirm</span> Figures come from the partners' prior roles. Owners to approve before launch.</p>
+      <div class="standards" aria-label="Standards and programs">
+        <span>OSHA</span><span>ANSI</span><span>NFPA</span><span>EPA</span><span>ISO 14001</span><span>OHSAS 18001</span><span>LOTO</span><span>Powered industrial trucks</span><span>HazCom</span><span>Emergency action plans</span><span>OSHA 10 General Industry</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 WHO / RESULTS -->
+  <section class="chapter" id="who" data-stage="5">
+    <div class="wrap">
+      <div class="col rv">
+        <div class="eyebrow">Who we work with</div>
+        <h2>Built for employers where people risk is <em>operational risk.</em></h2>
+        <div class="roles">
+          <div class="role"><b>Operations leaders</b><span>Hitting targets with crews that turn over and supervisors still learning to lead.</span></div>
+          <div class="role"><b>Safety &amp; EHS directors</b><span>Compliance is handled. Behavior on the floor still isn't where it needs to be.</span></div>
+          <div class="role"><b>HR &amp; people leaders</b><span>Open roles, short tenures, and exit interviews that all say the same thing.</span></div>
+          <div class="role"><b>Owners &amp; executives</b><span>Claims, turnover costs, and culture risk showing up on the P&amp;L.</span></div>
+        </div>
+        <div class="industries" aria-label="Industries">
+          <span class="ph">Transportation &amp; logistics</span><span class="ph">Construction</span><span class="ph">Manufacturing</span><span class="ph">Energy &amp; utilities</span><span class="ph">Nonprofit &amp; public sector</span><span class="ph-tag">Confirm target industries</span>
+        </div>
+      </div>
+
+      <div class="cases">
+        <article class="case ph rv">
+          <span class="ph-tag">Case study placeholder</span>
+          <h3>[Client type, industry]</h3>
+          <dl><div><dt>Situation</dt><dd>[What was happening and what it was costing]</dd></div><div><dt>What we did</dt><dd>[Assessment, solution, training]</dd></div><div><dt>Result</dt><dd>[Measured outcome, such as change in incident rate or 90-day retention]</dd></div></dl>
+        </article>
+        <article class="case ph rv">
+          <span class="ph-tag">Case study placeholder</span>
+          <h3>[Client type, industry]</h3>
+          <dl><div><dt>Situation</dt><dd>[What was happening and what it was costing]</dd></div><div><dt>What we did</dt><dd>[Assessment, solution, training]</dd></div><div><dt>Result</dt><dd>[Measured outcome]</dd></div></dl>
+        </article>
+        <article class="case ph rv">
+          <span class="ph-tag">Client quote placeholder</span>
+          <h3>"[A real quote from a client, approved for use]"</h3>
+          <dl><div><dt>Name, title</dt><dd>[Company]</dd></div></dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 PARTNERS -->
+  <section class="chapter" id="partners" data-stage="5">
+    <div class="wrap">
+      <div class="col rv">
+        <div class="eyebrow">The partners</div>
+        <h2>Two perspectives. <em>One purpose.</em></h2>
+        <p class="lead">One partner has spent a career on safety, risk, and operations. The other has spent two decades on hiring, talent, and the people side of performance. Together they see the whole picture.</p>
+      </div>
+      <div class="team">
+        <article class="person glass rv">
+          <div class="portrait ph"><span class="ini">ES</span><span class="ph-tag">Headshot</span></div>
+          <div class="person-body">
+            <div class="who"><span>Co-Founder · Principal Risk Advisor</span><b>Edward Smith</b></div>
+            <p>Edward leads the Safety &amp; Operational Risk practice. He has 10+ years in EHS, building proactive safety cultures and leading enterprise-wide programs for 4,000+ employees across 50+ locations. His work covers OSHA compliance, incident investigation, fleet and driver safety, workers' comp risk, and emergency preparedness. He also teaches OSHA 10-hour General Industry courses.</p>
+            <div class="meta"><span>EHS &amp; OSHA</span><span>Root cause analysis</span><span>Fleet safety</span><span>Safety culture</span></div>
+            <q>Safety is about people. Leadership is about relationships. And performance is built through both.</q>
+          </div>
+        </article>
+        <article class="person glass rv">
+          <div class="portrait ph"><span class="ini">RM</span><span class="ph-tag">Headshot</span></div>
+          <div class="person-body">
+            <div class="who"><span>Co-Founder · Principal People &amp; Talent Advisor</span><b>Roberta Muniz</b></div>
+            <p>Roberta leads the Talent &amp; Workforce Strategy practice and supports Leadership and Career Mobility. She brings 20+ years across recruiting, talent acquisition, HR, and coaching, including senior recruiting for a Fortune 500 company. She has seen both sides of the table. She knows why employers struggle to keep good people, and why good people leave.</p>
+            <div class="meta"><span>Talent acquisition</span><span>Selection</span><span>Leadership coaching</span><span>Outplacement</span></div>
+            <q>People matter. When people thrive, organizations are better positioned to thrive too.</q>
+          </div>
+        </article>
+      </div>
+      <div class="together glass ph rv">
+        <p>Certifications, associations, and board roles go here.</p>
+        <span class="ph-tag">Owners to provide</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 SUMMIT -->
+  <section class="summit" id="summit" data-stage="6">
+    <div class="wrap">
+      <p class="eyebrow" style="justify-content:center">The paragon</p>
+      <h2>Safer. Stronger. <em>Better prepared</em> for what's next.</h2>
+    </div>
+  </section>
+
+  <!-- 9 CONTACT -->
+  <section class="chapter" id="contact" data-stage="7">
+    <div class="wrap contact-grid">
+      <div class="col rv">
+        <div class="eyebrow">Start here</div>
+        <h2>Tell us what's not working. We'll help you find <em>what's driving it.</em></h2>
+        <p class="lead">The first conversation is <span class="inline-ph">[free, 30 minutes]</span>. No pitch deck. A straight look at your situation and whether we're the right fit.</p>
+        <dl class="contact-list">
+          <div><dt>Book</dt><dd><span class="inline-ph">[Calendar booking link]</span></dd></div>
+          <div><dt>Email</dt><dd><span class="inline-ph">[hello@domain.com]</span></dd></div>
+          <div><dt>Phone</dt><dd><span class="inline-ph">[(303) 000-0000]</span></dd></div>
+          <div><dt>Office</dt><dd>Denver, Colorado</dd></div>
+        </dl>
+      </div>
+      <form class="glass rv" id="form" novalidate>
+        <div class="row2">
+          <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-title">Title<input id="f-title" name="title" autocomplete="organization-title"></label>
+        </div>
+        <div class="row2">
+          <label for="f-company">Company<input id="f-company" name="company" autocomplete="organization" required></label>
+          <label for="f-email">Work email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <label for="f-area">What's the biggest concern?
+          <select id="f-area" name="area">
+            <option value="">Choose one</option>
+            <option>Safety &amp; Operational Risk</option>
+            <option>Leadership &amp; Workplace Culture</option>
+            <option>Talent Acquisition &amp; Workforce Strategy</option>
+            <option>Career Mobility &amp; Outplacement</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label for="f-msg">What's happening?<textarea id="f-msg" name="message" placeholder="A few sentences is plenty."></textarea></label>
+        <button class="btn btn-gold" type="submit">Request a consultation <span class="arr">→</span></button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-dark.webp" alt="Smith-Paragon Partners" width="170" height="128">
+    <div class="f-right">
+      <b>People · Leadership · Safety · Performance</b>
+      <span>Smith-Paragon Partners, LLC · Denver, Colorado</span>
+      <span>© 2026 Smith-Paragon Partners, LLC</span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon" id="ribbon">Concept preview by Borrego Business Systems · gold dashed items are placeholders<button type="button" aria-label="Hide note" id="ribbon-x">×</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+'use strict';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------------- risk check ---------------- */
+const PRACTICE = ['Safety & Operational Risk','Leadership & Workplace Culture','Talent Acquisition & Workforce Strategy','Career Mobility & Outplacement'];
+const QS = [
+  {q:'Are we protecting our employees?', p:0, code:'R-01'},
+  {q:'Are our supervisors prepared to lead?', p:1, code:'R-02'},
+  {q:'Are we hiring the right people?', p:2, code:'R-03'},
+  {q:'Are our workplace practices creating unnecessary risk?', p:0, code:'R-04'},
+  {q:'Are we retaining and developing the employees we need?', p:2, code:'R-05'}
+];
+const OPTS = [['We’re solid',0],['Not sure',1],['It’s a concern',2]];
+const LBL = ['Low','Watch','High'];
+const answers = new Array(QS.length).fill(null);
+const qsEl = document.getElementById('qs'), rowsEl = document.getElementById('reg-rows');
+QS.forEach((item,i)=>{
+  const d=document.createElement('div'); d.className='q';
+  d.innerHTML='<div class="q-head"><span class="q-num">0'+(i+1)+'</span><span class="q-text" id="qt'+i+'">'+item.q+'</span></div><div class="opts" role="group" aria-labelledby="qt'+i+'"></div>';
+  const g=d.querySelector('.opts');
+  OPTS.forEach(([t,v])=>{const b=document.createElement('button');b.type='button';b.className='opt';b.textContent=t;b.dataset.v=v;b.id='q'+i+'o'+v;b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{answers[i]=v;g.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});g.appendChild(b);});
+  qsEl.appendChild(d);
+  const r=document.createElement('div'); r.className='reg-row';
+  r.innerHTML='<span class="code">'+item.code+'</span><span class="area">'+PRACTICE[item.p]+'</span><span class="chip" id="chip'+i+'">Not assessed</span>';
+  rowsEl.appendChild(r);
+});
+const meter=document.getElementById('meter'); for(let i=0;i<10;i++) meter.appendChild(document.createElement('i'));
+function render(){
+  const n=answers.filter(a=>a!==null).length;
+  document.getElementById('reg-count').textContent=n+' / 5 answered';
+  let score=0; const byP=[0,0,0,0];
+  answers.forEach((a,i)=>{const c=document.getElementById('chip'+i);
+    if(a===null){c.className='chip';c.textContent='Not assessed';return}
+    c.className='chip l'+a; c.textContent=LBL[a]; score+=a; byP[QS[i].p]+=a;});
+  [...meter.children].forEach((m,i)=>{m.style.background= i<score ? (score>=7?'var(--risk-high)':score>=4?'var(--risk-watch)':'var(--risk-low)') : '';});
+  const v=document.getElementById('verdict');
+  if(!n){return}
+  const flagged=answers.filter(a=>a>0).length;
+  let top=byP.indexOf(Math.max(...byP));
+  if(Math.max(...byP)===0){
+    v.innerHTML='<div class="big">So far, so good.</div><p>'+(n<5?'Finish the remaining questions for the full picture.':'You feel solid on all five. A quick outside check can confirm the data backs that up.')+'</p>';
+  } else {
+    v.innerHTML='<div class="big">'+flagged+' of '+n+' area'+(n>1?'s':'')+' need attention. Start with <em>'+PRACTICE[top]+'</em>.</div><p>'+(n<5?'Finish the remaining questions for the full picture.':'That’s where a focused assessment will pay off fastest.')+'</p>';
+  }
+  window.__riskTop = Math.max(...byP)>0 ? PRACTICE[top] : '';
+  if(window.__onRisk) window.__onRisk(answers);
+}
+document.getElementById('talk').addEventListener('click',()=>{
+  const sel=document.getElementById('f-area'), msg=document.getElementById('f-msg');
+  if(window.__riskTop) sel.value=window.__riskTop;
+  const lines=answers.map((a,i)=>a===null?null:QS[i].q+' '+OPTS[a][0]).filter(Boolean);
+  if(lines.length && !msg.value) msg.value='From the risk check:\n'+lines.join('\n');
+});
+
+/* ---------------- form ---------------- */
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target, note=document.getElementById('form-note');
+  const miss=['f-name','f-company','f-email'].filter(id=>!document.getElementById(id).value.trim());
+  const em=document.getElementById('f-email').value;
+  if(miss.length){note.textContent='Add your name, company, and work email so we can reply.';document.getElementById(miss[0]).focus();return}
+  if(!/^\S+@\S+\.\S+$/.test(em)){note.textContent='That email doesn’t look complete. Check it and try again.';return}
+  note.textContent='Preview only. On the live site this request goes straight to the partners’ inbox and CRM.';
+});
+
+/* ---------------- ribbon ---------------- */
+document.getElementById('ribbon-x').addEventListener('click',()=>{document.getElementById('ribbon').hidden=true});
+
+/* ---------------- nav + rail + reveal ---------------- */
+const nav=document.getElementById('nav');
+const railLinks=[...document.querySelectorAll('.rail a')];
+const railTargets=railLinks.map(a=>document.getElementById(a.dataset.for));
+if(!reduce && 'IntersectionObserver' in window){
+  const rvs=[...document.querySelectorAll('.rv')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  rvs.forEach(el=>{const r=el.getBoundingClientRect(); if(r.top>innerHeight){el.classList.add('pre');io.observe(el)}});
+}
+/* stat counters */
+const stats=document.getElementById('stats'); let counted=false;
+function countUp(){ if(counted) return; counted=true;
+  stats.querySelectorAll('.v').forEach(el=>{const to=+el.dataset.to, small=el.querySelector('small'); const suf=small?small.outerHTML:'';
+    if(reduce||to===0){el.innerHTML=(el.dataset.comma?to.toLocaleString('en-US'):to)+suf;return}
+    const t0=performance.now(), dur=1600;
+    (function step(t){const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3), v=Math.round(to*e);
+      el.innerHTML=(el.dataset.comma?v.toLocaleString('en-US'):v)+suf; if(k<1) requestAnimationFrame(step);})(t0);});
+}
+if('IntersectionObserver' in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){countUp();o.disconnect()}},{threshold:.4}).observe(stats)} else countUp();
+
+/* ---------------- scroll → stage ---------------- */
+const stageEls=[...document.querySelectorAll('[data-stage]')];
+let targetStage=1;
+function readScroll(){
+  const vh=innerHeight, mark=vh*0.55;
+  nav.classList.toggle('solid', scrollY>40);
+  let i=0; for(let k=0;k<stageEls.length;k++){ if(stageEls[k].getBoundingClientRect().top<=mark) i=k; }
+  const a=stageEls[i], b=stageEls[i+1];
+  const sa=+a.dataset.stage;
+  if(!b){targetStage=sa}
+  else{
+    const ta=a.getBoundingClientRect().top, tb=b.getBoundingClientRect().top;
+    let f=(mark-ta)/Math.max(1,(tb-ta)); f=Math.max(0,Math.min(1,f));
+    f = f<0.55?0:(f-0.55)/0.45; f=f*f*(3-2*f);
+    targetStage = sa + (+b.dataset.stage - sa)*f;
+  }
+  // rail
+  let on=0; railTargets.forEach((t,k)=>{ if(t && t.getBoundingClientRect().top<=vh*0.5) on=k; });
+  railLinks.forEach((l,k)=>l.classList.toggle('on',k===on));
+}
+addEventListener('scroll',readScroll,{passive:true}); addEventListener('resize',readScroll); readScroll();
+
+/* ---------------- WebGL particle stage ---------------- */
+if(typeof THREE==='undefined'){document.documentElement.classList.add('no-webgl');return}
+const host=document.getElementById('stage'); const scrim=document.querySelector('.scrim');
+let renderer;
+try{ renderer=new THREE.WebGLRenderer({antialias:false,alpha:true,powerPreference:'high-performance'}); }
+catch(e){document.documentElement.classList.add('no-webgl');return}
+const mobile = matchMedia('(max-width: 980px)').matches;
+const DPR=Math.min(devicePixelRatio||1, mobile?1.5:1.75);
+renderer.setPixelRatio(DPR); renderer.setSize(innerWidth,innerHeight); renderer.setClearColor(0x000000,0);
+host.appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,0.1,100); camera.position.set(0,0,8.2);
+const N = mobile ? 7000 : 14000;
+
+/* palette */
+const C = {
+  ivory:[0.96,0.94,0.90], stone:[0.52,0.49,0.43], gold:[0.86,0.68,0.34], goldHi:[0.98,0.86,0.56], goldLo:[0.56,0.42,0.18],
+  p:[[0.91,0.77,0.42],[0.90,0.56,0.45],[0.53,0.73,0.86],[0.66,0.79,0.60]],
+  low:[0.56,0.70,0.60], watch:[0.89,0.70,0.31], high:[0.89,0.46,0.36]
+};
+let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+const gauss=()=>{let u=0,v=0;while(!u)u=rnd();while(!v)v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(6.2832*v)};
+const mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+
+function makeShape(fn){const P=new Float32Array(N*3), K=new Float32Array(N*3);
+  for(let i=0;i<N;i++){const r=fn(i); P[i*3]=r[0];P[i*3+1]=r[1];P[i*3+2]=r[2]; K[i*3]=r[3][0];K[i*3+1]=r[3][1];K[i*3+2]=r[3][2];} return {P,K};}
+
+/* 0. chaos: risk in the air */
+const centers=[...Array(16)].map(()=>[gauss()*2.4,gauss()*1.6,gauss()*1.4]);
+const chaos=makeShape(i=>{let x,y,z;
+  if(rnd()<0.55){const c=centers[i%16]; x=c[0]+gauss()*0.45;y=c[1]+gauss()*0.45;z=c[2]+gauss()*0.45;}
+  else{const r=3.4*Math.cbrt(rnd()),t=rnd()*6.283,p=Math.acos(2*rnd()-1); x=r*Math.sin(p)*Math.cos(t)*1.25;y=r*Math.cos(p)*0.8;z=r*Math.sin(p)*Math.sin(t);}
+  const hz=rnd()<0.14; return [x,y,z, hz?mix(C.high,C.watch,rnd()):mix(C.stone,C.ivory,rnd()*0.5)];});
+
+/* triangle sampler for the mountain */
+function triPt(a,b,c){let u=rnd(),v=rnd(); if(u+v>1){u=1-u;v=1-v} return [a[0]+(b[0]-a[0])*u+(c[0]-a[0])*v, a[1]+(b[1]-a[1])*u+(c[1]-a[1])*v, a[2]+(b[2]-a[2])*u+(c[2]-a[2])*v];}
+function edgePt(a,b){const t=rnd(); return [a[0]+(b[0]-a[0])*t+gauss()*0.012,a[1]+(b[1]-a[1])*t+gauss()*0.012,a[2]+(b[2]-a[2])*t+gauss()*0.012];}
+function pyramid(apex,hw,hd,base){ // returns faces + edges
+  const [ax,ay,az]=apex; const b=[[ax-hw,base,az-hd],[ax+hw,base,az-hd],[ax+hw,base,az+hd],[ax-hw,base,az+hd]];
+  return {faces:[[apex,b[0],b[1]],[apex,b[1],b[2]],[apex,b[2],b[3]],[apex,b[3],b[0]]], edges:[[apex,b[0]],[apex,b[1]],[apex,b[2]],[apex,b[3]],[b[3],b[2]]], front:[apex,b[3],b[2]]};
+}
+function mountain(scale,bright){
+  const big=pyramid([0.45,1.75,0],2.15,1.0,-1.15), small=pyramid([-1.35,0.75,-0.35],1.35,0.75,-1.15);
+  const gold=pyramid([0.45,0.95,0.62],1.15,0.32,-0.95);
+  return makeShape(i=>{
+    const r=rnd(); let p,col;
+    if(r<0.18){ const e=gold.edges[i%5]; p=edgePt(e[0],e[1]); col=mix(C.gold,C.goldHi,rnd()); }
+    else if(r<0.36){ const f=gold.faces[(i>>1)%4]; p=triPt(...f); col=mix(C.goldLo,C.gold,rnd()); }
+    else if(r<0.52){ const src=rnd()<0.7?big:small; const e=src.edges[i%5]; p=edgePt(e[0],e[1]); col=C.ivory; }
+    else if(r<0.86){ const f=big.faces[i%4]; p=triPt(...f); col=mix(C.stone,C.ivory,0.45+rnd()*0.5*bright); }
+    else { const f=small.faces[i%4]; p=triPt(...f); col=mix(C.stone,C.ivory,0.3+rnd()*0.5*bright); }
+    // ground glow ring
+    if(rnd()<0.06){const a=rnd()*6.283,rr=2.6+gauss()*0.3; p=[0.2+Math.cos(a)*rr*1.2,-1.18+gauss()*0.02,Math.sin(a)*rr*0.55]; col=mix(C.goldLo,C.stone,rnd());}
+    return [p[0]*scale,(p[1]-0.2)*scale,p[2]*scale,col];
+  });
+}
+const peak=mountain(1.0,0.8);
+
+/* 2. fragments: four problems drifting apart */
+const fragC=[[-2.4,1.4,-0.8],[2.3,1.7,0.4],[-1.9,-1.6,0.9],[2.5,-1.3,-0.9]];
+const frags=makeShape(i=>{const k=i%4,c=fragC[k]; const s=0.42+0.25*rnd();
+  return [c[0]+gauss()*s*1.2,c[1]+gauss()*s,c[2]+gauss()*s, mix(C.p[k],C.stone,0.35+rnd()*0.3)];});
+
+/* 3. risk matrix: likelihood x severity */
+const matrix=makeShape(i=>{const cell=i%25, r=Math.floor(cell/5), c=cell%5, g=0.82;
+  let x=(c-2)*g+(rnd()-0.5)*0.64, y=(r-2)*g+(rnd()-0.5)*0.64, z=gauss()*0.03;
+  const sc=(r+1)*(c+1); const col= sc<=4?C.low: sc<=10?mix(C.watch,C.low,0.35): sc<=15?C.watch: C.high;
+  // tilt the plane
+  const ax=-0.5, ay=0.38; let y2=y*Math.cos(ax)-z*Math.sin(ax), z2=y*Math.sin(ax)+z*Math.cos(ax);
+  let x3=x*Math.cos(ay)+z2*Math.sin(ay), z3=-x*Math.sin(ay)+z2*Math.cos(ay);
+  return [x3*1.05,y2*1.05+0.1,z3, mix(col,C.ivory,rnd()*0.2)];});
+
+/* 4. four practices, organized */
+const quadC=[[-1.15,1.1,0],[1.15,1.1,0],[-1.15,-1.1,0],[1.15,-1.1,0]];
+const quads=makeShape(i=>{const k=i%4,c=quadC[k]; const j=Math.floor(i/4), M=N/4;
+  const y=1-2*(j+0.5)/M, rr=Math.sqrt(1-y*y), th=j*2.39996; const R=(rnd()<0.8?0.78:0.78*Math.cbrt(rnd()));
+  return [c[0]+Math.cos(th)*rr*R, c[1]+y*R, c[2]+Math.sin(th)*rr*R, mix(C.p[k],C.ivory,rnd()*0.25)];});
+
+/* 5. the climb: ascending path */
+const helix=makeShape(i=>{const t=i/N, strand=i%2; const turns=3.2;
+  const a=t*Math.PI*2*turns+strand*Math.PI, R=1.25-0.55*t; let x=Math.cos(a)*R, z=Math.sin(a)*R, y=(t-0.5)*5.0;
+  if(rnd()<0.18){const a2=Math.floor(t*48)/48*Math.PI*2*turns; const u=rnd()*2-1; x=Math.cos(a2)*R*u; z=Math.sin(a2)*R*u; y=(Math.floor(t*48)/48-0.5)*5.0;}
+  x+=gauss()*0.04; y+=gauss()*0.04; z+=gauss()*0.04;
+  return [x,y,z, mix(mix(C.stone,C.ivory,0.5),C.goldHi,Math.pow(t,1.4))];});
+
+/* 6. summit: the peak, brighter */
+const summit=mountain(1.08,1.2);
+
+const SHAPES=[chaos,peak,frags,matrix,quads,helix,summit,summit];
+// stage layout: x offset (desktop), y offset, scale, spin speed, turbulence
+const LAYOUT=[
+  {x:1.9,y:0.0,s:1.0,spin:0.10,turb:1.0},
+  {x:2.05,y:0.05,s:1.05,spin:0.06,turb:0.15},
+  {x:1.8,y:0.0,s:0.95,spin:0.08,turb:0.55},
+  {x:1.85,y:0.55,s:0.95,spin:0.0,turb:0.12},
+  {x:1.9,y:0.0,s:0.95,spin:0.12,turb:0.18},
+  {x:2.2,y:0.0,s:0.85,spin:0.22,turb:0.14},
+  {x:0,y:0.25,s:1.22,spin:0.05,turb:0.08},
+  {x:2.3,y:0.1,s:0.8,spin:0.06,turb:0.08}
+];
+
+const geo=new THREE.BufferGeometry();
+const pos=new Float32Array(N*3), col=new Float32Array(N*3), seeds=new Float32Array(N), delay=new Float32Array(N);
+for(let i=0;i<N;i++){seeds[i]=rnd(); delay[i]=rnd();}
+pos.set(chaos.P); col.set(chaos.K);
+geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+geo.setAttribute('seed',new THREE.BufferAttribute(seeds,1));
+const off=new Float32Array(N*3), vel=new Float32Array(N*3);
+geo.setAttribute('offset',new THREE.BufferAttribute(off,3));
+const mat=new THREE.ShaderMaterial({
+  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, vertexColors:true,
+  uniforms:{uTime:{value:0},uTurb:{value:1},uSize:{value:mobile?2.8:2.6},uPR:{value:DPR},uOpacity:{value:mobile?0.8:1.0},uPulse:{value:0}},
+  vertexShader:`
+    attribute float seed; attribute vec3 offset; uniform float uTime,uTurb,uSize,uPR,uPulse; varying vec3 vC; varying float vA;
+    void main(){
+      vec3 p=position; float t=uTime*0.5+seed*6.2831;
+      p+=uTurb*0.16*vec3(sin(t*1.3+p.y*1.7),cos(t*1.1+p.x*1.3),sin(t*0.9+p.z*1.5));
+      vec4 wp=modelMatrix*vec4(p,1.0); wp.xyz+=offset; vec4 mv=viewMatrix*wp;
+      float tw=0.55+0.45*sin(uTime*1.7+seed*40.0);
+      gl_PointSize=uSize*uPR*(0.55+fract(seed*13.7)*1.0)*(7.5/-mv.z)*(1.0+uPulse*0.4);
+      gl_Position=projectionMatrix*mv; vC=color*(0.75+0.35*tw); vA=smoothstep(16.0,4.0,-mv.z);
+    }`,
+  fragmentShader:`
+    uniform float uOpacity; varying vec3 vC; varying float vA;
+    void main(){ float d=length(gl_PointCoord-0.5); float a=smoothstep(0.5,0.0,d); a*=a; gl_FragColor=vec4(vC,a*vA*uOpacity); }`
+});
+const points=new THREE.Points(geo,mat);
+const group=new THREE.Group(); group.add(points); scene.add(group);
+
+let cur=0; // starts in chaos, assembles into the peak
+let mx=0,my=0,tmx=0,tmy=0;
+let pmx=0,pmy=0,pOn=false,pSpeed=0,lastPX=0,lastPY=0;
+addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;tmx=(e.clientX/innerWidth-0.5);tmy=(e.clientY/innerHeight-0.5);
+  const nx=e.clientX/innerWidth*2-1, ny=-(e.clientY/innerHeight*2-1); pSpeed=Math.min(1,pSpeed+Math.hypot(nx-lastPX,ny-lastPY)*4); lastPX=nx;lastPY=ny; pmx=nx;pmy=ny;pOn=true;},{passive:true});
+document.addEventListener('pointerleave',()=>{pOn=false});
+addEventListener('blur',()=>{pOn=false});
+addEventListener('pointerup',e=>{if(e.pointerType==='touch')pOn=false});
+addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
+window.__onRisk=()=>{mat.uniforms.uPulse.value=1};
+
+const lerp=(a,b,t)=>a+(b-a)*t;
+let last=performance.now(), spinA=0, intro=0;
+function frame(now){
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  const tTime=now/1000; mat.uniforms.uTime.value=tTime;
+  intro=Math.min(1,intro+dt*0.55);
+  const goal = reduce ? targetStage : lerp(0,targetStage,Math.min(1,intro*1.15));
+  cur += (goal-cur)*(reduce?1:Math.min(1,dt*3.2));
+  const i0=Math.max(0,Math.min(SHAPES.length-2,Math.floor(cur))), f=Math.max(0,Math.min(1,cur-i0));
+  const A=SHAPES[i0], B=SHAPES[i0+1];
+  for(let i=0;i<N;i++){
+    let lf=(f-delay[i]*0.3)/0.7; lf=lf<0?0:lf>1?1:lf; const e=lf*lf*(3-2*lf); const j=i*3;
+    pos[j]=A.P[j]+(B.P[j]-A.P[j])*e; pos[j+1]=A.P[j+1]+(B.P[j+1]-A.P[j+1])*e; pos[j+2]=A.P[j+2]+(B.P[j+2]-A.P[j+2])*e;
+    col[j]=A.K[j]+(B.K[j]-A.K[j])*e; col[j+1]=A.K[j+1]+(B.K[j+1]-A.K[j+1])*e; col[j+2]=A.K[j+2]+(B.K[j+2]-A.K[j+2])*e;
+  }
+  geo.attributes.position.needsUpdate=true; geo.attributes.color.needsUpdate=true;
+  const L0=LAYOUT[i0], L1=LAYOUT[i0+1], ee=f*f*(3-2*f);
+  const wide=innerWidth/innerHeight;
+  const xo = mobile ? 0 : lerp(L0.x,L1.x,ee)*Math.min(1.25,wide/1.6);
+  const yo = mobile ? 1.1 : lerp(L0.y,L1.y,ee);
+  const sc = lerp(L0.s,L1.s,ee)*(mobile?0.78:1);
+  mat.uniforms.uTurb.value=lerp(L0.turb,L1.turb,ee);
+  mat.uniforms.uPulse.value*=0.94;
+  if(!reduce) spinA+=dt*lerp(L0.spin,L1.spin,ee);
+  // matrix stage holds still, others breathe
+  const sway = reduce?0:Math.sin(tTime*0.25)*0.18*(1-Math.max(0,1-Math.abs(cur-3)));
+  mx+=(tmx-mx)*0.05; my+=(tmy-my)*0.05;
+  group.position.set(xo,yo,0); group.scale.setScalar(sc);
+  group.rotation.y = spinA + sway + mx*0.5;
+  group.rotation.x = my*0.25;
+  scrim.style.opacity = String(1 - 0.85*Math.max(0,1-Math.abs(cur-6)));
+  // magnetic repulsion: push particles away from the cursor, spring them home
+  group.updateMatrixWorld(); const me=group.matrixWorld.elements;
+  const halfH=Math.tan(21*Math.PI/180)*camera.position.z, aspect=innerWidth/innerHeight;
+  const cx=pmx*halfH*aspect, cy=pmy*halfH;
+  const R=mobile?0.55:0.72, R2=R*R, STR=reduce?0:(0.55+pSpeed*0.45);
+  pSpeed*=0.92;
+  const active=pOn&&!reduce;
+  for(let i=0;i<N;i++){
+    const j=i*3, x=pos[j],y=pos[j+1],z=pos[j+2];
+    let tx=0,ty=0,tz=0;
+    if(active){
+      const wx=me[0]*x+me[4]*y+me[8]*z+me[12], wy=me[1]*x+me[5]*y+me[9]*z+me[13];
+      const dx=wx-cx, dy=wy-cy, d2=dx*dx+dy*dy;
+      if(d2<R2){ const d=Math.sqrt(d2)+1e-4, k=1-d/R, f=k*k*STR;
+        tx=dx/d*f - dy/d*f*0.22; ty=dy/d*f + dx/d*f*0.22; tz=f*0.6*(seeds[i]-0.3); }
+    }
+    vel[j]+=(tx-off[j])*0.085; vel[j+1]+=(ty-off[j+1])*0.085; vel[j+2]+=(tz-off[j+2])*0.085;
+    vel[j]*=0.86; vel[j+1]*=0.86; vel[j+2]*=0.86;
+    off[j]+=vel[j]; off[j+1]+=vel[j+1]; off[j+2]+=vel[j+2];
+  }
+  geo.attributes.offset.needsUpdate=true;
+  renderer.render(scene,camera);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
